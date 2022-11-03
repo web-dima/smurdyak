@@ -99,6 +99,13 @@ a {
     bottom: 30px;
 }
 
+.flower {
+    position: absolute;
+    height: 50px;
+    object-fit: cover;
+    bottom: 38px;
+}
+
 .ball {
     position: absolute;
     bottom: 50px;
