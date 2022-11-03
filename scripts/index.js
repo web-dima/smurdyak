@@ -23,9 +23,7 @@ timer = setInterval(function () {
 
         clearInterval(timer);
         timeDOM.innerHTML = "00:20";
-        const a = document.createElement("a")
-        a.href = "results.html"
-        a.click()
+        endGame()
 
     } else {
 
@@ -99,6 +97,9 @@ function checkPickUpFlower() {
             conut++
             countDOM.textContent = "Количество цветов: " + conut
         }
+    }
+    if (!flowers.length) {
+        endGame()
     }
 }
 
@@ -195,4 +196,13 @@ function checkColide(obj1, obj2) {
     // }
     if (obj1Left + obj1.clientWidth >= obj2Left && obj1Left <= obj2Left) return true
     return false
+}
+
+function endGame() {
+    const a = document.createElement("a")
+    a.href = "results.html"
+    
+    localStorage.setItem("result", conut)
+    
+    a.click()
 }
