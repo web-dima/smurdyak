@@ -4,38 +4,40 @@ const titleDOM = document.querySelector(".header__name")
 const countDOM = document.querySelector(".header__count")
 const timeDOM = document.querySelector(".header__time")
 const char = document.querySelector(".character")
-// const moleCoords = []
-// const step = 5
-// const conut = 0
-// let maxTime = 20
+const moleCoords = []
+const step = 5
+const conut = 0
+let maxTime = 20
 const gameWidht = window.innerWidth - 110
+// const moles = []
 
 
 
 
+timer = setInterval(function () {
+    let seconds = maxTime % 60
 
-// timer = setInterval(function () {
-//     let seconds = maxTime % 60
+    if (maxTime <= 0) {
 
-//     if (maxTime <= 0) {
+        clearInterval(timer);
+        timeDOM.innerHTML = "00:20";
+        const a = document.createElement("a")
+        a.href = "results.html"
+        a.click()
 
-//         clearInterval(timer);
-//         timeDOM.innerHTML = "00:20";
-//         alert("время истекло ф5")
+    } else {
 
-//     } else {
+        let strTimer = `00:${parseTime(seconds)}`;
 
-//         let strTimer = `00:${parseTime(seconds)}`;
+        timeDOM.innerHTML = strTimer;
+    }
+    maxTime = maxTime - 1;
+}, 1000)
 
-//         timeDOM.innerHTML = strTimer;
-//     }
-//     maxTime = maxTime - 1;
-// }, 1000)
-
-// function parseTime(seconds) {
-//     if (seconds <= 9) return `0${seconds}`
-//     return seconds
-// }
+function parseTime(seconds) {
+    if (seconds <= 9) return `0${seconds}`
+    return seconds
+}
 
 // const moleAmount = Math.floor(Math.random() * (4 - 1 + 1) + 1)
 
@@ -46,23 +48,25 @@ const gameWidht = window.innerWidth - 110
 
 
 // function spawnMole() {
+//     moleCoords.sort((a, b) => a - b)
+
 //     moleCoords.forEach((i) => {
 //         const img = document.createElement("img")
 //         img.src = "../img/mole.png"
 //         img.classList.add("mole")
 //         img.style.left = i + "px"
-//         console.log(img.style.left)
+//         moles.push(img)
 //         game.append(img)
 //     })
+
 // }
 
 
 
-
 document.addEventListener("DOMContentLoaded", () => {
-    // countDOM.textContent = "Количество цветов: " + conut
-    // titleDOM.textContent = "Ваше имя: " + nameFromStorage
-    // timeDOM.textContent = "00:20"
+    countDOM.textContent = "Количество цветов: " + conut
+    titleDOM.textContent = "Ваше имя: " + nameFromStorage
+    timeDOM.textContent = "00:20"
     // spawnMole()
 })
 
@@ -97,4 +101,42 @@ document.addEventListener("keydown", (e) => {
         }
 
     }
+    // if (e.key === " ") {
+    //     if (!document.querySelector("img.ball")) {
+    //         const img = document.createElement("img")
+    //         img.src = "img/ball.png"
+    //         img.classList.add("ball")
+
+    //         img.style.left = (Number(char.style.left.replace("px", "")) + char.clientWidth) + "px"
+
+
+    //         if (moles.length) {
+    //             game.append(img)
+    //             let animation = setInterval(() => {
+    //                 if (checkColide(img, moles[0])) {
+    //                     game.removeChild(img)
+    //                     game.removeChild(moles[0])
+    //                     moles.shift()
+
+    //                     console.log(moles);
+    //                     clearInterval(animation)
+    //                 }
+    //                 img.style.left = (Number(img.style.left.replace("px", "")) + 10) + "px"
+    //             }, 100);
+    //         }
+
+    //     }
+
+    // }
+
 })
+
+
+
+// function checkColide(obj1, obj2) {
+//     const obj1Left = Number(obj1.style.left.replace("px", ""))
+//     const obj2Left = Number(obj2.style.left.replace("px", ""))
+
+//     if (obj1Left + obj1.clientWidth >= obj2Left) return true
+//     return false
+// }
